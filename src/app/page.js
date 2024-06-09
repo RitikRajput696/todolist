@@ -25,17 +25,8 @@ export default function Home() {
 
   if (task.length > 0) {
     renderTask = task.map((t, i) => (
-      <ListItem key={i}>
+      <ListItem key={i} handleDelete={handleDelete} i={i}>
         {t}
-        <i className="absolute right-1 top-1/2 z-10 -translate-y-1/2 transform">
-          <Image
-            src="/delete.svg"
-            height={25}
-            width={25}
-            alt="delete"
-            onClick={() => handleDelete(i)}
-          />
-        </i>
       </ListItem>
     ));
   } else {
@@ -48,7 +39,14 @@ export default function Home() {
         <label className="relative">
           <InputBox title={title} setTitle={(data) => setTitle(data)} />
           <i className="absolute right-1 top-1/2 z-10 -translate-y-1/2 transform">
-            <Image src="/add.svg" height={25} width={25} alt="add" />
+            <Image
+              className="hover:stroke-red-600"
+              src="/add.svg"
+              height={25}
+              width={25}
+              alt="add"
+              onClick={handleSubmit}
+            />
           </i>
         </label>
         <ul className="rounded-lg bg-gray-200 p-4">{renderTask}</ul>
