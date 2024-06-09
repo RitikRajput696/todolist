@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import ListItem from "@/components/ListItem";
+import InputBox from "@/components/InputBox";
 
 export default function Home() {
   const [title, setTitle] = useState("");
@@ -45,13 +46,7 @@ export default function Home() {
     <main className="flex min-h-screen justify-center ">
       <form onSubmit={handleSubmit} className="mx-1 w-96">
         <label className="relative">
-          <input
-            type="text"
-            placeholder="Enter Your Task"
-            className=" my-8 w-full rounded-lg border-[1px] border-gray-500 px-4 py-2 text-lg placeholder:font-semibold focus:border "
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <InputBox title={title} setTitle={(data) => setTitle(data)} />
           <i className="absolute right-1 top-1/2 z-10 -translate-y-1/2 transform">
             <Image src="/add.svg" height={25} width={25} alt="add" />
           </i>
