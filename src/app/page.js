@@ -1,12 +1,19 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import autoAnimate from "@formkit/auto-animate";
+
 import ListItem from "@/components/ListItem";
 import InputBox from "@/components/InputBox";
 
 export default function Home() {
   const [title, setTitle] = useState("");
   const [task, setTask] = useState([]);
+  const parent = useRef(null);
+
+  useEffect(() => {
+    parent.current && autoAnimate(parent.current);
+  }, [parent]);
 
   let renderTask;
 
@@ -40,7 +47,6 @@ export default function Home() {
           <InputBox title={title} setTitle={(data) => setTitle(data)} />
           <i className="absolute right-1 top-1/2 z-10 -translate-y-1/2 transform">
             <Image
-              className="hover:stroke-red-600"
               src="/add.svg"
               height={25}
               width={25}
@@ -49,7 +55,9 @@ export default function Home() {
             />
           </i>
         </label>
-        <ul className="rounded-lg bg-gray-200 p-4">{renderTask}</ul>
+        <ul className="rounded-lg bg-gray-200 p-4" ref={parent}>
+          {renderTask}
+        </ul>
       </form>
     </main>
   );
