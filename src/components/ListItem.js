@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function ListItem({ children, handleDelete, i }) {
   return (
-    <li className=" relative mb-2 flex justify-between rounded-md bg-white px-2 py-4">
+    <li className=" relative mb-2 flex justify-between rounded-md bg-white px-2 py-4 shadow-lg">
       {children}
       <i className="absolute right-1 top-1/2 z-10 -translate-y-1/2 transform">
         <Image
